@@ -1,0 +1,187 @@
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+const Skills = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const skills = [
+    { name: 'JavaScript', level: 90, category: 'Frontend' },
+    { name: 'TypeScript', level: 85, category: 'Frontend' },
+    { name: 'React/Next.js', level: 90, category: 'Frontend' },
+    { name: 'Node.js', level: 80, category: 'Backend' },
+    { name: 'Python', level: 75, category: 'Backend' },
+    { name: 'PostgreSQL', level: 80, category: 'Database' },
+    { name: 'MongoDB', level: 70, category: 'Database' },
+    { name: 'AWS/Cloud', level: 75, category: 'DevOps' },
+  ];
+
+  const skillCategories = ['Frontend', 'Backend', 'Database', 'DevOps'];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) {
+      observer.observe(skillsSection);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const CircularProgress = ({ skill, index }: { skill: typeof skills[0]; index: number }) => {
+    const circumference = 2 * Math.PI * 45;
+    const strokeDasharray = circumference;
+    const strokeDashoffset = isVisible 
+      ? circumference - (skill.level / 100) * circumference 
+      : circumference;
+
+    const getColor = (category: string) => {
+      const colors = {
+        Frontend: 'from-red-500 to-orange-500',
+        Backend: 'from-orange-500 to-yellow-500',
+        Database: 'from-yellow-500 to-red-500',
+        DevOps: 'from-red-600 to-orange-600',
+      };
+      return colors[category as keyof typeof colors];
+    };
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.1 * index }}
+        whileHover={{ scale: 1.05 }}
+        className="flex flex-col items-center group"
+      >
+        <div className="relative w-32 h-32 mb-4">
+          {/* Background Circle */}
+          <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 100 100">
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              stroke="hsl(var(--muted))"
+              strokeWidth="6"
+              fill="transparent"
+              className="opacity-20"
+            />
+            {/* Progress Circle */}
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              stroke="url(#gradient)"
+              strokeWidth="6"
+              fill="transparent"
+              strokeDasharray={strokeDasharray}
+              strokeDashoffset={strokeDashoffset}
+              strokeLinecap="round"
+              className="transition-all duration-[2s] ease-out"
+            />
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="hsl(var(--primary))" />
+                <stop offset="100%" stopColor="hsl(var(--accent))" />
+              </linearGradient>
+            </defs>
+          </svg>
+          
+          {/* Percentage Text */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isVisible ? 1 : 0 }}
+              transition={{ duration: 0.6, delay: 0.5 + 0.1 * index }}
+              className="text-2xl font-bold gradient-text"
+            >
+              {skill.level}%
+            </motion.span>
+          </div>
+
+          {/* Glow Effect */}
+          <div className="absolute inset-0 bg-hero-gradient rounded-full blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+        </div>
+
+        {/* Skill Info */}
+        <div className="text-center">
+          <h4 className="text-lg font-bold text-foreground mb-1">
+            {skill.name}
+          </h4>
+          <span className={`text-sm px-3 py-1 rounded-full bg-gradient-to-r ${getColor(skill.category)} text-white font-medium`}>
+            {skill.category}
+          </span>
+        </div>
+      </motion.div>
+    );
+  };
+
+  return (
+    <section id="skills" className="py-20">
+      <div className="container mx-auto px-6">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+            Mes <span className="gradient-text">Compétences</span>
+          </h2>
+          <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full mb-6" />
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Technologies et outils que je maîtrise pour créer des solutions performantes et innovantes
+          </p>
+        </motion.div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {skills.map((skill, index) => (
+            <CircularProgress key={skill.name} skill={skill} index={index} />
+          ))}
+        </div>
+
+        {/* Technology Badges */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="text-center"
+        >
+          <h3 className="text-2xl font-bold mb-8 text-foreground">Technologies & Outils</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {[
+              'React', 'Next.js', 'Vue.js', 'Angular', 'Node.js', 'Express',
+              'Python', 'Django', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Redis',
+              'Docker', 'Kubernetes', 'AWS', 'Azure', 'Git', 'Jest', 'Cypress'
+            ].map((tech, index) => (
+              <motion.span
+                key={tech}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.05 * index }}
+                whileHover={{ scale: 1.1 }}
+                className="px-4 py-2 glass rounded-full text-sm font-medium text-foreground border border-primary/20 hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 cursor-default"
+              >
+                {tech}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default Skills;

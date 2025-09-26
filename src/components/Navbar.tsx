@@ -36,7 +36,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass border-b border-border/20' : 'bg-transparent'
+        scrolled ? 'glass border-b' : 'bg-transparent'
       }`}
     >
       <nav className="container mx-auto px-6 py-4">
@@ -125,7 +125,7 @@ const Navbar = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + index * 0.1 }}
                       onClick={() => scrollToSection(item.href)}
-                      className="flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg bg-secondary/30 hover:bg-secondary/50 transition-colors duration-300"
+                      className="flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg bg-secondary/20 hover:bg-secondary/40 transition-colors duration-300"
                     >
                       <Icon size={18} className="text-primary" />
                       <span className="text-foreground font-medium">{item.name}</span>

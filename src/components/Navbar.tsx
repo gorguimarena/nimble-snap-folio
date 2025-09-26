@@ -19,14 +19,20 @@ const Navbar = () => {
   const menuItems = [
     { name: 'Accueil', href: '#home', icon: Home },
     { name: 'À propos', href: '#about', icon: User },
+    { name: 'Compétences', href: '#skills', icon: User },
     { name: 'Projets', href: '#projects', icon: Briefcase },
     { name: 'Contact', href: '#contact', icon: Mail },
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
+    const element = document.querySelector(href) as HTMLElement;
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const navbarHeight = 80; // Height of fixed navbar
+      const elementPosition = element.offsetTop - navbarHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
     }
     setIsOpen(false);
   };
@@ -111,9 +117,10 @@ const Navbar = () => {
               className="md:hidden mt-4 overflow-hidden"
             >
               <motion.div
-                initial={{ y: -20 }}
-                animate={{ y: 0 }}
-                transition={{ delay: 0.1 }}
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -20, opacity: 0 }}
+                transition={{ duration: 0.2 }}
                 className="glass rounded-lg p-4 space-y-3"
               >
                 {menuItems.map((item, index) => {

@@ -6,6 +6,60 @@
 
 @layer base {
   :root {
+    /* Light Portfolio Theme */
+    --background: 0 0% 100%;
+    --foreground: 220 13% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 9%;
+
+    /* Primary: Red-Orange Gradient */
+    --primary: 0 72% 51%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 15 87% 67%;
+
+    --secondary: 220 13% 96%;
+    --secondary-foreground: 220 13% 9%;
+
+    --muted: 220 13% 96%;
+    --muted-foreground: 215 20.2% 45.1%;
+
+    --accent: 15 87% 67%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 90%;
+    --input: 220 13% 96%;
+    --ring: 0 72% 51%;
+
+    --radius: 0.75rem;
+
+    /* Custom Portfolio Tokens */
+    --hero-gradient: linear-gradient(135deg, hsl(0 72% 51%), hsl(15 87% 67%));
+    --hero-gradient-subtle: linear-gradient(135deg, hsl(0 72% 51% / 0.1), hsl(15 87% 67% / 0.1));
+    --section-bg: hsl(220 13% 98%);
+    --glass-bg: hsl(0 0% 100% / 0.8);
+
+    /* Skill Progress Colors */
+    --skill-bg: hsl(220 13% 96%);
+    --skill-fill: linear-gradient(135deg, hsl(0 72% 51%), hsl(15 87% 67%));
+
+    /* Shadows */
+    --shadow-primary: 0 10px 30px hsl(0 72% 51% / 0.2);
+    --shadow-card: 0 8px 32px hsl(220 13% 5% / 0.1);
+    --shadow-glow: 0 0 40px hsl(0 72% 51% / 0.1);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
     /* Dark Portfolio Theme */
     --background: 220 13% 5%;
     --foreground: 210 40% 98%;
@@ -44,11 +98,11 @@
     --hero-gradient-subtle: linear-gradient(135deg, hsl(0 72% 51% / 0.1), hsl(15 87% 67% / 0.1));
     --section-bg: hsl(220 13% 7%);
     --glass-bg: hsl(220 13% 8% / 0.8);
-    
+
     /* Skill Progress Colors */
     --skill-bg: hsl(220 13% 12%);
     --skill-fill: linear-gradient(135deg, hsl(0 72% 51%), hsl(15 87% 67%));
-    
+
     /* Shadows */
     --shadow-primary: 0 10px 30px hsl(0 72% 51% / 0.3);
     --shadow-card: 0 8px 32px hsl(220 13% 5% / 0.8);
@@ -59,6 +113,11 @@
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 }
+
+section {
+  scroll-margin-top: 76px; 
+}
+
 
 @layer base {
   * {
@@ -92,6 +151,20 @@
 
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 

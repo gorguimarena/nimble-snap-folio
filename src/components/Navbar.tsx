@@ -1,40 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, User, Briefcase, Mail } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, Home, User, Briefcase, Mail, Sun, Moon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/hooks/use-theme";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const isMobile = useIsMobile();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (!isMobile && isOpen) {
+      setIsOpen(false);
+    }
+  }, [isMobile, isOpen]);
+
   const menuItems = [
-    { name: 'Accueil', href: '#home', icon: Home },
-    { name: 'À propos', href: '#about', icon: User },
-    { name: 'Compétences', href: '#skills', icon: User },
-    { name: 'Projets', href: '#projects', icon: Briefcase },
-    { name: 'Contact', href: '#contact', icon: Mail },
+    { name: "Accueil", href: "#home", icon: Home },
+    { name: "À propos", href: "#about", icon: User },
+    { name: "Compétences", href: "#skills", icon: User },
+    { name: "Projets", href: "#projects", icon: Briefcase },
+    { name: "Contact", href: "#contact", icon: Mail },
   ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href) as HTMLElement;
-    if (element) {
-      const navbarHeight = 80; // Height of fixed navbar
-      const elementPosition = element.offsetTop - navbarHeight;
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
-    }
+    const selector = href.startsWith("#") ? href : `#${href}`;
+    const el = document.querySelector(selector) as HTMLElement | null;
+    if (!el) return;
+    // fermer le menu d'abord pour éviter shift (si mobile)
     setIsOpen(false);
+    // attendre l'animation de sortie si mobile
+    const wait = isMobile ? 350 : 0;
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, wait);
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   return (
@@ -42,10 +73,10 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass border-b' : 'bg-transparent'
+        scrolled ? "glass border-b" : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-6 py-4">
+      <nav ref={menuRef} className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <motion.div
@@ -66,52 +97,89 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + index * 0.1 }}
                 onClick={() => scrollToSection(item.href)}
-                className="text-foreground hover:text-primary transition-colors duration-300 font-medium"
+                className="text-foreground hover:text-primary focus:text-primary transition-colors duration-300 font-medium px-2 py-1 rounded-md"
               >
                 {item.name}
               </motion.button>
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Theme Toggle Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-foreground hover:text-primary"
-            onClick={() => setIsOpen(!isOpen)}
+            onClick={toggleTheme}
+            className="text-foreground hover:text-primary transition-colors duration-300"
+            aria-label="Toggle theme"
           >
             <AnimatePresence mode="wait">
-              {isOpen ? (
+              {theme === "dark" ? (
                 <motion.div
-                  key="close"
+                  key="sun"
                   initial={{ rotate: -90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: 90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <X size={24} />
+                  <Sun size={20} />
                 </motion.div>
               ) : (
                 <motion.div
-                  key="menu"
+                  key="moon"
                   initial={{ rotate: 90, opacity: 0 }}
                   animate={{ rotate: 0, opacity: 1 }}
                   exit={{ rotate: -90, opacity: 0 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Menu size={24} />
+                  <Moon size={20} />
                 </motion.div>
               )}
             </AnimatePresence>
           </Button>
+
+          {/* Mobile Menu Button */}
+          {isMobile && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-foreground hover:text-primary"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-label="Toggle mobile menu"
+            >
+              <AnimatePresence mode="wait">
+                {isOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X size={24} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu size={24} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Button>
+          )}
         </div>
 
         {/* Mobile Menu */}
         <AnimatePresence>
-          {isOpen && (
+          {isOpen && isMobile && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
+              animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               className="md:hidden mt-4 overflow-hidden"
@@ -132,10 +200,12 @@ const Navbar = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 + index * 0.1 }}
                       onClick={() => scrollToSection(item.href)}
-                      className="flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg bg-secondary/20 hover:bg-secondary/40 transition-colors duration-300"
+                      className="flex items-center space-x-3 w-full text-left px-4 py-3 rounded-lg bg-secondary/20 hover:bg-secondary/40 focus:bg-secondary/40 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
                     >
                       <Icon size={18} className="text-primary" />
-                      <span className="text-foreground font-medium">{item.name}</span>
+                      <span className="text-foreground font-medium">
+                        {item.name}
+                      </span>
                     </motion.button>
                   );
                 })}

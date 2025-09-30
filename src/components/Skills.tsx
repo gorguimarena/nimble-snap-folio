@@ -4,6 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [showAll, setShowAll] = useState(false);
 
   const skills = [
     { name: "JavaScript", level: 90, category: "Frontend" },
@@ -153,53 +154,86 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        {/* Skills by Category with Carousel */}
-        {skillCategories.map((category, categoryIndex) => {
-          const categorySkills = skills.filter(skill => skill.category === category);
-          
-          if (categorySkills.length === 0) return null;
+        {/* Skills Display - One Row Initially */}
+        {!showAll ? (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+              {skills.slice(0, 5).map((skill, index) => (
+                <CircularProgress key={skill.name} skill={skill} index={index} />
+              ))}
+            </div>
+          </motion.div>
+        ) : (
+          // Full View with Carousel by Category
+          skillCategories.map((category, categoryIndex) => {
+            const categorySkills = skills.filter(skill => skill.category === category);
+            
+            if (categorySkills.length === 0) return null;
 
-          return (
-            <motion.div
-              key={category}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 * categoryIndex }}
-              className="mb-16"
-            >
-              <h3 className="text-2xl font-bold mb-8 text-center">
-                <span className="gradient-text">{category}</span>
-              </h3>
-              
-              {categorySkills.length <= 4 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl mx-auto">
-                  {categorySkills.map((skill, index) => (
-                    <CircularProgress key={skill.name} skill={skill} index={index} />
-                  ))}
-                </div>
-              ) : (
-                <Carousel
-                  opts={{
-                    align: "start",
-                    loop: true,
-                  }}
-                  className="w-full max-w-6xl mx-auto"
-                >
-                  <CarouselContent className="-ml-4">
+            return (
+              <motion.div
+                key={category}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 * categoryIndex }}
+                className="mb-16"
+              >
+                <h3 className="text-2xl font-bold mb-8 text-center">
+                  <span className="gradient-text">{category}</span>
+                </h3>
+                
+                {categorySkills.length <= 4 ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-6xl mx-auto">
                     {categorySkills.map((skill, index) => (
-                      <CarouselItem key={skill.name} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/4">
-                        <CircularProgress skill={skill} index={index} />
-                      </CarouselItem>
+                      <CircularProgress key={skill.name} skill={skill} index={index} />
                     ))}
-                  </CarouselContent>
-                  <CarouselPrevious className="left-0" />
-                  <CarouselNext className="right-0" />
-                </Carousel>
-              )}
-            </motion.div>
-          );
-        })}
+                  </div>
+                ) : (
+                  <Carousel
+                    opts={{
+                      align: "start",
+                      loop: true,
+                    }}
+                    className="w-full max-w-6xl mx-auto"
+                  >
+                    <CarouselContent className="-ml-4">
+                      {categorySkills.map((skill, index) => (
+                        <CarouselItem key={skill.name} className="pl-4 basis-full sm:basis-1/2 lg:basis-1/4">
+                          <CircularProgress skill={skill} index={index} />
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-0" />
+                    <CarouselNext className="right-0" />
+                  </Carousel>
+                )}
+              </motion.div>
+            );
+          })
+        )}
+
+        {/* Voir Plus Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="px-8 py-3 bg-hero-gradient text-white rounded-full font-semibold hover:scale-105 transition-transform duration-300 shadow-lg"
+          >
+            {showAll ? "Voir moins" : "Voir plus"}
+          </button>
+        </motion.div>
 
         {/* Technology Badges */}
         <motion.div

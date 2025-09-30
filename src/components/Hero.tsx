@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Download, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import profilePhoto from '@/assets/profile-photo.jpg';
+import profilePhoto from '@/assets/Gorgui Marena.jpg';
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -110,7 +110,7 @@ const Hero = () => {
                     <img
                       src={profilePhoto}
                       alt="Gorgui Marena - Développeur Full-Stack"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover [object-position:50%_20%]"
                     />
                     <div className="absolute inset-0 bg-hero-gradient opacity-10" />
                   </div>

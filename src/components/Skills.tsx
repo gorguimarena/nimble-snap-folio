@@ -1,21 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const skills = [
-    { name: 'JavaScript', level: 90, category: 'Frontend' },
-    { name: 'TypeScript', level: 85, category: 'Frontend' },
-    { name: 'React/Next.js', level: 90, category: 'Frontend' },
-    { name: 'Node.js', level: 80, category: 'Backend' },
-    { name: 'Python', level: 75, category: 'Backend' },
-    { name: 'PostgreSQL', level: 80, category: 'Database' },
-    { name: 'MongoDB', level: 70, category: 'Database' },
-    { name: 'AWS/Cloud', level: 75, category: 'DevOps' },
+    { name: "JavaScript", level: 90, category: "Frontend" },
+    { name: "Angular", level: 85, category: "Frontend" },
+    { name: "React", level: 90, category: "Frontend" },
+    { name: "Next.js", level: 70, category: "Frontend" },
+    { name: "Node.js", level: 80, category: "Backend" },
+    { name: "Python", level: 65, category: "Backend" },
+    { name: "Java", level: 75, category: "Backend" },
+    { name: "Express", level: 75, category: "Backend" },
+    { name: "Spring-boot", level: 75, category: "Backend" },
+    { name: "TypeScript", level: 85, category: "Frontend-Backend" },
+    { name: "Laravel", level: 85, category: "Frontend-Backend" },
+    { name: "Php", level: 85, category: "Frontend-Backend" },
+    { name: "PostgreSQL", level: 80, category: "Database" },
+    { name: "MongoDB", level: 60, category: "Database" },
+    { name: "Mysql", level: 70, category: "Database" },
+    { name: "AWS/Cloud", level: 55, category: "DevOps" },
   ];
 
-  const skillCategories = ['Frontend', 'Backend', 'Database', 'DevOps'];
+  const skillCategories = ["Frontend", "Backend", "Database", "DevOps"];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -27,7 +35,7 @@ const Skills = () => {
       { threshold: 0.3 }
     );
 
-    const skillsSection = document.getElementById('skills');
+    const skillsSection = document.getElementById("skills");
     if (skillsSection) {
       observer.observe(skillsSection);
     }
@@ -35,19 +43,25 @@ const Skills = () => {
     return () => observer.disconnect();
   }, []);
 
-  const CircularProgress = ({ skill, index }: { skill: typeof skills[0]; index: number }) => {
+  const CircularProgress = ({
+    skill,
+    index,
+  }: {
+    skill: (typeof skills)[0];
+    index: number;
+  }) => {
     const circumference = 2 * Math.PI * 45;
     const strokeDasharray = circumference;
-    const strokeDashoffset = isVisible 
-      ? circumference - (skill.level / 100) * circumference 
+    const strokeDashoffset = isVisible
+      ? circumference - (skill.level / 100) * circumference
       : circumference;
 
     const getColor = (category: string) => {
       const colors = {
-        Frontend: 'from-red-500 to-orange-500',
-        Backend: 'from-orange-500 to-yellow-500',
-        Database: 'from-yellow-500 to-red-500',
-        DevOps: 'from-red-600 to-orange-600',
+        Frontend: "from-red-500 to-orange-500",
+        Backend: "from-orange-500 to-yellow-500",
+        Database: "from-yellow-500 to-red-500",
+        DevOps: "from-red-600 to-orange-600",
       };
       return colors[category as keyof typeof colors];
     };
@@ -93,7 +107,7 @@ const Skills = () => {
               </linearGradient>
             </defs>
           </svg>
-          
+
           {/* Percentage Text */}
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.span
@@ -115,7 +129,11 @@ const Skills = () => {
           <h4 className="text-lg font-bold text-foreground mb-1">
             {skill.name}
           </h4>
-          <span className={`text-sm px-3 py-1 rounded-full bg-gradient-to-r ${getColor(skill.category)} text-white font-medium`}>
+          <span
+            className={`text-sm px-3 py-1 rounded-full bg-gradient-to-r ${getColor(
+              skill.category
+            )} text-white font-medium`}
+          >
             {skill.category}
           </span>
         </div>
@@ -139,7 +157,8 @@ const Skills = () => {
           </h2>
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Technologies et outils que je maîtrise pour créer des solutions performantes et innovantes
+            Technologies et outils que je maîtrise pour créer des solutions
+            performantes et innovantes
           </p>
         </motion.div>
 
@@ -158,12 +177,24 @@ const Skills = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
         >
-          <h3 className="text-2xl font-bold mb-8 text-foreground">Technologies & Outils</h3>
+          <h3 className="text-2xl font-bold mb-8 text-foreground">
+            Technologies & Outils
+          </h3>
           <div className="flex flex-wrap justify-center gap-4">
             {[
-              'React', 'Next.js', 'Vue.js', 'Angular', 'Node.js', 'Express',
-              'Python', 'Django', 'FastAPI', 'PostgreSQL', 'MongoDB', 'Redis',
-              'Docker', 'Kubernetes', 'AWS', 'Azure', 'Git', 'Jest', 'Cypress'
+              "React",
+              "Next.js",
+              "Angular",
+              "Node.js",
+              "Express",
+              "Python",
+              "Django",
+              "PostgreSQL",
+              "MongoDB",
+              "Docker",
+              "Azure Devops",
+              "Git",
+              "Gitlab"
             ].map((tech, index) => (
               <motion.span
                 key={tech}

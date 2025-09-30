@@ -72,7 +72,7 @@ const About = () => {
             </p>
 
             <div className="flex flex-wrap gap-3 pt-4">
-              {['React', 'TypeScript', 'Node.js', 'Python', 'PostgreSQL', 'AWS'].map((tech) => (
+              {['Python', 'Node.js/Express.js', 'Java', 'Php', 'Devops'].map((tech) => (
                 <span
                   key={tech}
                   className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"

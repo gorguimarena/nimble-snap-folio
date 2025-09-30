@@ -1,43 +1,46 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Eye } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import project1 from '@/assets/project-1.jpg';
-import project2 from '@/assets/project-2.jpg';
-import project3 from '@/assets/project-3.jpg';
+import React from "react";
+import { motion } from "framer-motion";
+import { ExternalLink, Github, Eye } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import project1 from "@/assets/project-1.jpg";
+import project2 from "@/assets/project-2.jpg";
+import project3 from "@/assets/project-3.jpg";
 
 const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: 'Application E-commerce',
-      description: 'Plateforme e-commerce complète avec paiement intégré, gestion des stocks et tableau de bord administrateur.',
+      title: "Application E-commerce",
+      description:
+        "Plateforme e-commerce complète avec paiement intégré, gestion des stocks et tableau de bord administrateur.",
       image: project1,
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      github: '#',
-      demo: '#',
-      category: 'Web App'
+      technologies: ["React", "Node.js", "PostgreSQL", "Typescrypt"],
+      github: "#",
+      demo: "#",
+      category: "Web App",
     },
     {
       id: 2,
-      title: 'App Mobile Fitness',
-      description: 'Application mobile de fitness avec suivi des entraînements, plans personnalisés et communauté sociale.',
+      title: "App Mobile Fitness",
+      description:
+        "Application mobile de fitness avec suivi des entraînements, plans personnalisés et communauté sociale.",
       image: project2,
-      technologies: ['React Native', 'Firebase', 'Redux', 'Charts.js'],
-      github: '#',
-      demo: '#',
-      category: 'Mobile App'
+      technologies: ["React Native", "Firebase", "Redux", "Charts.js"],
+      github: "#",
+      demo: "#",
+      category: "Mobile App",
     },
     {
       id: 3,
-      title: 'Dashboard Analytics',
-      description: 'Tableau de bord interactif pour l\'analyse de données avec visualisations en temps réel et rapports automatisés.',
+      title: "Dashboard Analytics",
+      description:
+        "Tableau de bord interactif pour l'analyse de données avec visualisations en temps réel et rapports automatisés.",
       image: project3,
-      technologies: ['Next.js', 'TypeScript', 'D3.js', 'Python'],
-      github: '#',
-      demo: '#',
-      category: 'Dashboard'
-    }
+      technologies: ["Next.js", "TypeScript", "D3.js", "Python"],
+      github: "#",
+      demo: "#",
+      category: "Dashboard",
+    },
   ];
 
   const containerVariants = {
@@ -45,9 +48,9 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -56,9 +59,9 @@ const Projects = () => {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6
-      }
-    }
+        duration: 0.6,
+      },
+    },
   };
 
   return (
@@ -77,8 +80,8 @@ const Projects = () => {
           </h2>
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Découvrez quelques-uns de mes projets récents qui démontrent mes compétences 
-            et ma passion pour le développement
+            Découvrez quelques-uns de mes projets récents qui démontrent mes
+            compétences et ma passion pour le développement
           </p>
         </motion.div>
 
@@ -123,7 +126,7 @@ const Projects = () => {
                     </Button>
                   </div>
                 </div>
-                
+
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-primary text-white text-xs font-medium rounded-full">
@@ -137,7 +140,7 @@ const Projects = () => {
                 <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                   {project.title}
                 </h3>
-                
+
                 <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                   {project.description}
                 </p>
@@ -156,11 +159,19 @@ const Projects = () => {
 
                 {/* Action Buttons */}
                 <div className="flex justify-between items-center">
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-muted-foreground hover:text-primary"
+                  >
                     <Github size={16} className="mr-2" />
                     GitHub
                   </Button>
-                  <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-muted-foreground hover:text-primary"
+                  >
                     <ExternalLink size={16} className="mr-2" />
                     Live Demo
                   </Button>
@@ -181,10 +192,16 @@ const Projects = () => {
           <p className="text-muted-foreground mb-6">
             Intéressé par mon travail ? Découvrez plus de projets sur mon GitHub
           </p>
-          <Button size="lg" className="btn-primary">
-            <Github size={20} className="mr-2" />
-            Voir tous mes projets
-          </Button>
+          <a
+            href="https://github.com/gorguimarena"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Button size="lg" className="btn-primary">
+              <Github size={20} className="mr-2" />
+              Voir tous mes projets
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

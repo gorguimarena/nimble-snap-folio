@@ -10,9 +10,12 @@ const Skills = () => {
     { name: "JavaScript", level: 90, category: "Frontend" },
     { name: "Angular", level: 85, category: "Frontend" },
     { name: "React", level: 90, category: "Frontend" },
-    { name: "Next.js", level: 70, category: "Frontend" },
+    { name: "TailwindCss", level: 60, category: "Frontend" },
+    { name: "Bootstrap", level: 70, category: "Frontend" },
+    { name: "Next.js", level: 50, category: "Frontend-Backend" },
     { name: "Node.js", level: 80, category: "Backend" },
     { name: "Python", level: 65, category: "Backend" },
+    { name: "Django", level: 65, category: "Frontend-Backend" },
     { name: "Java", level: 75, category: "Backend" },
     { name: "Express", level: 75, category: "Backend" },
     { name: "Spring-boot", level: 75, category: "Backend" },
@@ -22,7 +25,11 @@ const Skills = () => {
     { name: "PostgreSQL", level: 80, category: "Database" },
     { name: "MongoDB", level: 60, category: "Database" },
     { name: "Mysql", level: 70, category: "Database" },
-    { name: "AWS/Cloud", level: 55, category: "DevOps" },
+    { name: "FireStore", level: 40, category: "Database" },
+    { name: "Docker", level: 75, category: "DevOps" },
+    { name: "K6", level: 45, category: "DevOps" },
+    { name: "Azure-Devops", level: 55, category: "DevOps" },
+    { name: "Linux", level: 55, category: "DevOps" },
   ];
 
   const skillCategories = ["Frontend", "Backend", "Frontend-Backend", "Database", "DevOps"];

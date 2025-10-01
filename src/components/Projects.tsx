@@ -1,46 +1,52 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Eye } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import project1 from '@/assets/project-1.jpg';
-import project2 from '@/assets/project-2.jpg';
-import project3 from '@/assets/project-3.jpg';
+import React from "react";
+import { motion } from "framer-motion";
+import { ExternalLink, Github, Eye } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import project1 from "@/assets/project-1.jpg";
+import project2 from "@/assets/project-2.jpg";
+import project3 from "@/assets/project-3.jpg";
 
 const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Application E-commerce",
+      title: "Application Back-end d’information citoyenne",
       description:
-        "Plateforme e-commerce complète avec paiement intégré, gestion des stocks et tableau de bord administrateur.",
-      image: project1,
-      technologies: ["React", "Node.js", "PostgreSQL", "TypeScript"],
-      github: "#",
-      demo: "#",
+        "Cette application permet de fournir les informations d’un citoyen via son numéro de carte d’identité. Elle est architecturée pour assurer la sécurité et la disponibilité des données.",
+      image: project1, // ⚠️ Mets ici ton image importée ou un placeholder
+      technologies: ["PHP", "SQL", "API sécurisée"],
+      github: "https://github.com/gorguimarena", // repo global
+      demo: "https://appdaf-php.onrender.com",
       category: "Web App",
     },
     {
       id: 2,
-      title: "App Mobile Fitness",
+      title: "Clone de WhatsApp (WatchApp)",
       description:
-        "Application mobile de fitness avec suivi des entraînements, plans personnalisés et communauté sociale.",
-      image: project2,
-      technologies: ["React Native", "Firebase", "Redux", "Charts.js"],
-      github: "#",
-      demo: "#",
-      category: "Mobile App",
+        "Un clone de l'application WhatsApp intégrant la messagerie en temps réel, avec authentification utilisateur et gestion des conversations.",
+      image: project2, // ⚠️ Mets ici ton image importée ou un placeholder
+      technologies: ["JavaScript (Vanilla)"],
+      github: "https://github.com/gorguimarena/whatsAppClone-",
+      demo: "https://whatsappclone-9bzg.onrender.com",
+      category: "Web App",
     },
     {
       id: 3,
-      title: "Dashboard Analytics",
+      title: "Gestion de Dahira avec gestion d’événementiel",
       description:
-        "Tableau de bord interactif pour l'analyse de données avec visualisations en temps réel et rapports automatisés.",
-      image: project3,
-      technologies: ["Next.js", "TypeScript", "D3.js", "Python"],
-      github: "#",
-      demo: "#",
-      category: "Dashboard",
+        "Un système complet pour la gestion des dahiras, incluant l’organisation des événements, la gestion des participants, et la communication.",
+      image: project3, // ⚠️ Mets ici ton image importée ou un placeholder
+      technologies: ["PHP"],
+      github: "https://packagist.org/users/dev-no-kage/packages", // ton profil packagist
+      demo: "https://registrymanager.onrender.com",
+      category: "Web App",
     },
   ];
 
@@ -128,7 +134,7 @@ const Projects = () => {
                       </Button>
                     </div>
                   </div>
-                  
+
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 bg-primary text-white text-xs font-medium rounded-full">
@@ -142,7 +148,7 @@ const Projects = () => {
                   <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                     {project.title}
                   </h3>
-                  
+
                   <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                     {project.description}
                   </p>
@@ -161,11 +167,19 @@ const Projects = () => {
 
                   {/* Action Buttons */}
                   <div className="flex justify-between items-center">
-                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-muted-foreground hover:text-primary"
+                    >
                       <Github size={16} className="mr-2" />
                       GitHub
                     </Button>
-                    <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-muted-foreground hover:text-primary"
+                    >
                       <ExternalLink size={16} className="mr-2" />
                       Live Demo
                     </Button>
@@ -184,7 +198,10 @@ const Projects = () => {
           >
             <CarouselContent className="-ml-4">
               {projects.map((project) => (
-                <CarouselItem key={project.id} className="pl-4 basis-full md:basis-1/2 lg:basis-1/3">
+                <CarouselItem
+                  key={project.id}
+                  className="pl-4 basis-full md:basis-1/2 lg:basis-1/3"
+                >
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -218,7 +235,7 @@ const Projects = () => {
                           </Button>
                         </div>
                       </div>
-                      
+
                       {/* Category Badge */}
                       <div className="absolute top-4 left-4">
                         <span className="px-3 py-1 bg-primary text-white text-xs font-medium rounded-full">
@@ -232,7 +249,7 @@ const Projects = () => {
                       <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
                         {project.title}
                       </h3>
-                      
+
                       <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                         {project.description}
                       </p>
@@ -251,11 +268,19 @@ const Projects = () => {
 
                       {/* Action Buttons */}
                       <div className="flex justify-between items-center">
-                        <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-muted-foreground hover:text-primary"
+                        >
                           <Github size={16} className="mr-2" />
                           GitHub
                         </Button>
-                        <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-primary">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="text-muted-foreground hover:text-primary"
+                        >
                           <ExternalLink size={16} className="mr-2" />
                           Live Demo
                         </Button>

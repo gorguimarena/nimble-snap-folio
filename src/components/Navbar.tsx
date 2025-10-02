@@ -4,11 +4,14 @@ import { Menu, X, Home, User, Briefcase, Mail, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useLanguage } from "@/hooks/use-language";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, setTheme } = useTheme();
+  const { t } = useLanguage();
   const isMobile = useIsMobile();
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -44,11 +47,11 @@ const Navbar = () => {
   }, [isMobile, isOpen]);
 
   const menuItems = [
-    { name: "Accueil", href: "#home", icon: Home },
-    { name: "À propos", href: "#about", icon: User },
-    { name: "Compétences", href: "#skills", icon: User },
-    { name: "Projets", href: "#projects", icon: Briefcase },
-    { name: "Contact", href: "#contact", icon: Mail },
+    { name: t('nav.home'), href: "#home", icon: Home },
+    { name: t('nav.about'), href: "#about", icon: User },
+    { name: t('nav.skills'), href: "#skills", icon: User },
+    { name: t('nav.projects'), href: "#projects", icon: Briefcase },
+    { name: t('nav.contact'), href: "#contact", icon: Mail },
   ];
 
   const scrollToSection = (href: string) => {
@@ -104,38 +107,41 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Theme Toggle Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            className="text-foreground hover:text-primary transition-colors duration-300"
-            aria-label="Toggle theme"
-          >
-            <AnimatePresence mode="wait">
-              {theme === "dark" ? (
-                <motion.div
-                  key="sun"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Sun size={20} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="moon"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Moon size={20} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </Button>
+          {/* Controls */}
+          <div className="flex items-center space-x-2">
+            <LanguageSwitcher />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              className="text-foreground hover:text-primary transition-colors duration-300"
+              aria-label="Toggle theme"
+            >
+              <AnimatePresence mode="wait">
+                {theme === "dark" ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun size={20} />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon size={20} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Button>
+          </div>
 
           {/* Mobile Menu Button */}
           {isMobile && (

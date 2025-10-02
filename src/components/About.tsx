@@ -1,35 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database, Globe, Smartphone } from 'lucide-react';
+import { GraduationCap, Award, Briefcase, Users } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
 
 const About = () => {
+  const { t } = useLanguage();
+
   const stats = [
-    { label: 'Projets Réalisés', value: '50+' },
-    { label: 'Années d\'Expérience', value: '5+' },
-    { label: 'Clients Satisfaits', value: '30+' },
-    { label: 'Technologies Maîtrisées', value: '15+' },
+    { label: t('about.stats.projects'), value: '3+' },
+    { label: t('about.stats.certifications'), value: '5+' },
+    { label: t('about.stats.experience'), value: '2+' },
+    { label: t('about.stats.skills'), value: '8+' },
   ];
 
   const services = [
     {
-      icon: Globe,
-      title: 'Développement Web',
-      description: 'Applications web modernes et responsives avec React, Next.js et TypeScript.',
+      icon: GraduationCap,
+      title: t('about.education.isep'),
+      description: t('about.education.isep_desc'),
     },
     {
-      icon: Smartphone,
-      title: 'Applications Mobiles',
-      description: 'Apps mobiles natives et cross-platform avec React Native et Flutter.',
+      icon: Award,
+      title: t('about.education.sonatel'),
+      description: t('about.education.sonatel_desc'),
     },
     {
-      icon: Database,
-      title: 'Backend & API',
-      description: 'APIs robustes et bases de données optimisées avec Node.js et PostgreSQL.',
+      icon: Briefcase,
+      title: t('about.experience.projects'),
+      description: t('about.experience.projects_desc'),
     },
     {
-      icon: Code,
-      title: 'Architecture & DevOps',
-      description: 'Solutions cloud, CI/CD et architecture microservices pour la scalabilité.',
+      icon: Users,
+      title: t('about.experience.teamwork'),
+      description: t('about.experience.teamwork_desc'),
     },
   ];
 
@@ -45,7 +48,7 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            À <span className="gradient-text">propos</span>
+            {t('about.title').split(' ')[0]} <span className="gradient-text">{t('about.title').split(' ')[1]}</span>
           </h2>
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full" />
         </motion.div>
@@ -60,27 +63,9 @@ const About = () => {
             className="space-y-6"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Développeur passionné avec plus de 5 ans d'expérience dans la création 
-              d'applications web et mobiles. J'aime transformer des idées complexes en 
-              solutions élégantes et intuitives.
-            </p>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Ma force réside dans ma capacité à allier créativité et technique pour 
-              livrer des produits de qualité qui dépassent les attentes des clients.
-              Toujours en veille technologique, j'adore apprendre et relever de nouveaux défis.
+              {t('about.description')}
             </p>
 
-            <div className="flex flex-wrap gap-3 pt-4">
-              {['Python', 'Node.js/Express.js', 'Java', 'Php', 'Devops'].map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium border border-primary/20"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
           </motion.div>
 
           {/* Stats */}

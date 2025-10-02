@@ -1,38 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { useLanguage } from '@/hooks/use-language';
 
 const Skills = () => {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [showAll, setShowAll] = useState(false);
 
   const skills = [
-    { name: "JavaScript", level: 90, category: "Frontend" },
-    { name: "Angular", level: 85, category: "Frontend" },
-    { name: "React", level: 90, category: "Frontend" },
-    { name: "TailwindCss", level: 60, category: "Frontend" },
-    { name: "Bootstrap", level: 70, category: "Frontend" },
-    { name: "Next.js", level: 50, category: "Frontend-Backend" },
-    { name: "Node.js", level: 80, category: "Backend" },
-    { name: "Python", level: 65, category: "Backend" },
-    { name: "Django", level: 65, category: "Frontend-Backend" },
-    { name: "Java", level: 75, category: "Backend" },
-    { name: "Express", level: 75, category: "Backend" },
-    { name: "Spring-boot", level: 75, category: "Backend" },
-    { name: "TypeScript", level: 85, category: "Frontend-Backend" },
-    { name: "Laravel", level: 85, category: "Frontend-Backend" },
-    { name: "Php", level: 85, category: "Frontend-Backend" },
-    { name: "PostgreSQL", level: 80, category: "Database" },
-    { name: "MongoDB", level: 60, category: "Database" },
-    { name: "Mysql", level: 70, category: "Database" },
-    { name: "FireStore", level: 40, category: "Database" },
-    { name: "Docker", level: 75, category: "DevOps" },
-    { name: "K6", level: 45, category: "DevOps" },
-    { name: "Azure-Devops", level: 55, category: "DevOps" },
-    { name: "Linux", level: 55, category: "DevOps" },
+    { name: "PHP", level: 85, category: t('skills.languages') },
+    { name: "JavaScript", level: 80, category: t('skills.languages') },
+    { name: "SQL", level: 75, category: t('skills.concepts') },
+    { name: "Git", level: 80, category: t('skills.tools') },
+    { name: "Docker", level: 70, category: t('skills.tools') },
+    { name: "JSON Server", level: 65, category: t('skills.tools') },
+    { name: "POO", level: 75, category: t('skills.concepts') },
+    { name: "API REST", level: 70, category: t('skills.concepts') },
+    { name: "Base de données relationnelles", level: 75, category: t('skills.concepts') },
+    { name: "Travail en équipe", level: 90, category: t('skills.softSkills') },
+    { name: "Autonomie", level: 85, category: t('skills.softSkills') },
+    { name: "Gestion de projet", level: 80, category: t('skills.softSkills') },
   ];
 
-  const skillCategories = ["Frontend", "Backend", "Frontend-Backend", "Database", "DevOps"];
+  const skillCategories = [t('skills.languages'), t('skills.tools'), t('skills.concepts'), t('skills.softSkills')];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -163,12 +154,11 @@ const Skills = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Mes <span className="gradient-text">Compétences</span>
+            {t('skills.title').split(' ')[0]} <span className="gradient-text">{t('skills.title').split(' ')[1]}</span>
           </h2>
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Technologies et outils que je maîtrise pour créer des solutions
-            performantes et innovantes
+            {t('skills.description')}
           </p>
         </motion.div>
 

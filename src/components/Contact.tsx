@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/hooks/use-language';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,8 +34,8 @@ const Contact = () => {
     setTimeout(() => {
       setIsLoading(false);
       toast({
-        title: "Message envoyé !",
-        description: "Je vous répondrai dans les plus brefs délais.",
+        title: t('contact.messageSent'),
+        description: t('contact.messageResponse'),
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
     }, 2000);
@@ -41,29 +43,34 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: Mail,
-      label: 'Email',
-      value: 'gorgui.marena@email.com',
-      href: 'mailto:gorgui.marena@email.com'
+      icon: Phone,
+      label: t('contact.phone'),
+      value: t('contact.phone1'),
+      href: `tel:${t('contact.phone1').replace(/\s/g, '')}`
     },
     {
       icon: Phone,
-      label: 'Téléphone',
-      value: '+33 1 23 45 67 89',
-      href: 'tel:+33123456789'
+      label: t('contact.phoneLabel2'),
+      value: t('contact.phone2'),
+      href: `tel:${t('contact.phone2').replace(/\s/g, '')}`
+    },
+    {
+      icon: Mail,
+      label: t('contact.emailLabel'),
+      value: t('contact.email'),
+      href: `mailto:${t('contact.email')}`
     },
     {
       icon: MapPin,
-      label: 'Localisation',
-      value: 'Paris, France',
+      label: t('contact.locationLabel'),
+      value: t('contact.location'),
       href: '#'
     }
   ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Github, href: 'https://github.com/gorguimarena', label: t('contact.github') },
+    { icon: Linkedin, href: '#', label: t('contact.linkedin') },
   ];
 
   return (
@@ -78,12 +85,11 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Entrer en <span className="gradient-text">Contact</span>
+            {t('contact.title').split(' ')[0]} <span className="gradient-text">{t('contact.title').split(' ')[1]}</span>
           </h2>
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Une idée de projet ? Une collaboration ? N'hésitez pas à me contacter, 
-            je serais ravi d'échanger avec vous !
+            {t('contact.description')}
           </p>
         </motion.div>
 
@@ -97,10 +103,6 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6 text-foreground">
-                Informations de Contact
-              </h3>
-              
               <div className="space-y-6">
                 {contactInfo.map((info, index) => {
                   const Icon = info.icon;

@@ -2,9 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Download, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import profilePhoto from '@/assets/Gorgui Marena.jpg';
+import { useLanguage } from '@/hooks/use-language';
 
 const Hero = () => {
+  const { t } = useLanguage();
+
   const scrollToAbout = () => {
     const aboutSection = document.querySelector('#about');
     if (aboutSection) {
@@ -33,7 +35,7 @@ const Hero = () => {
               transition={{ delay: 0.2 }}
               className="space-y-2"
             >
-              <p className="text-primary text-lg font-medium">Salut, je suis</p>
+              <p className="text-primary text-lg font-medium">{t('hero.greeting')}</p>
               <h1 className="text-5xl lg:text-7xl font-bold text-foreground">
                 Gorgui<br />
                 <span className="gradient-text">Marena</span>
@@ -47,7 +49,7 @@ const Hero = () => {
               transition={{ delay: 0.4 }}
               className="text-xl lg:text-2xl text-muted-foreground font-light"
             >
-              Développeur Full-Stack
+              {t('hero.role')}
             </motion.p>
 
             {/* Description */}
@@ -57,8 +59,7 @@ const Hero = () => {
               transition={{ delay: 0.6 }}
               className="text-lg text-muted-foreground max-w-lg leading-relaxed"
             >
-              Passionné par la création d'expériences web exceptionnelles avec des technologies modernes. 
-              Je transforme les idées en solutions digitales innovantes.
+              {t('hero.description')}
             </motion.p>
 
             {/* Buttons */}
@@ -68,22 +69,22 @@ const Hero = () => {
               transition={{ delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 className="btn-primary relative z-10 font-semibold"
               >
                 <Download size={20} className="mr-2" />
-                Télécharger le CV
+                {t('hero.download')}
               </Button>
-              
-              <Button 
-                variant="outline" 
+
+              <Button
+                variant="outline"
                 size="lg"
                 onClick={scrollToAbout}
                 className="border-primary/30 text-foreground hover:bg-primary/10 hover:border-primary"
               >
                 <Mail size={20} className="mr-2" />
-                En savoir plus
+                {t('hero.discover')}
               </Button>
             </motion.div>
           </motion.div>
@@ -95,32 +96,47 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="flex justify-center lg:justify-end"
           >
-            <div className="relative">
+            <motion.div
+              whileHover={{ scale: 1.02, transition: { type: "spring", stiffness: 200, damping: 20 } }}
+              className="relative"
+            >
+              <img
+                src="/Gorgui Marena-Photoroombg-remoted.png"
+                alt="Gorgui Marena - Développeur Full-Stack"
+                className="w-[28rem] h-[28rem] lg:w-[32rem] lg:h-[32rem] xl:w-[36rem] xl:h-[36rem] object-contain object-center drop-shadow-2xl"
+              />
+              {/* Floating Bubbles */}
               <motion.div
-                className="hero-float"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <div className="relative w-80 h-80 lg:w-96 lg:h-96">
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 bg-hero-gradient rounded-full blur-3xl opacity-20 animate-pulse-glow" />
-                  
-                  {/* Profile Image */}
-                  <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
-                    <img
-                      src={profilePhoto}
-                      alt="Gorgui Marena - Développeur Full-Stack"
-                      className="w-full h-full object-cover [object-position:50%_20%]"
-                    />
-                    <div className="absolute inset-0 bg-hero-gradient opacity-10" />
-                  </div>
-                  
-                  {/* Decorative Elements */}
-                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse" />
-                  <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-                </div>
-              </motion.div>
-            </div>
+                className="absolute -top-6 -left-6 w-4 h-4 bg-primary/70 rounded-full shadow-lg"
+                animate={{ y: [-25, -80], x: [0, 5], opacity: [0.7, 0] }}
+                transition={{ repeat: Infinity, duration: 4, delay: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
+              />
+              <motion.div
+                className="absolute top-1/4 -right-8 w-5 h-5 bg-primary/60 rounded-full shadow-md"
+                animate={{ y: [-35, -90], x: [0, -3], opacity: [0.6, 0] }}
+                transition={{ repeat: Infinity, duration: 5, delay: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
+              />
+              <motion.div
+                className="absolute top-1/2 -left-10 w-3 h-3 bg-primary/80 rounded-full shadow-lg"
+                animate={{ y: [-30, -75], x: [0, 4], opacity: [0.8, 0] }}
+                transition={{ repeat: Infinity, duration: 3.5, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              />
+              <motion.div
+                className="absolute bottom-1/4 -right-6 w-4 h-4 bg-primary/65 rounded-full shadow-md"
+                animate={{ y: [-28, -85], x: [0, -2], opacity: [0.65, 0] }}
+                transition={{ repeat: Infinity, duration: 4.5, delay: 2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              />
+              <motion.div
+                className="absolute -bottom-4 left-1/4 w-2 h-2 bg-primary/75 rounded-full shadow-sm"
+                animate={{ y: [-20, -60], x: [0, 3], opacity: [0.75, 0] }}
+                transition={{ repeat: Infinity, duration: 3, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+              />
+              <motion.div
+                className="absolute top-3/4 right-1/4 w-3 h-3 bg-primary/55 rounded-full shadow-md"
+                animate={{ y: [-32, -78], x: [0, -4], opacity: [0.55, 0] }}
+                transition={{ repeat: Infinity, duration: 4.2, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              />
+            </motion.div>
           </motion.div>
         </div>
 
@@ -137,7 +153,7 @@ const Hero = () => {
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
           >
-            <span className="text-sm font-medium">Découvrir</span>
+            <span className="text-sm font-medium">{t('hero.scroll')}</span>
             <ArrowDown size={20} />
           </motion.button>
         </motion.div>

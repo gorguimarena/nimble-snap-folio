@@ -2,8 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/hooks/use-language';
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -26,7 +29,7 @@ const Footer = () => {
               Gorgui Marena
             </h3>
             <p className="text-muted-foreground">
-              Développeur Full-Stack Passionné
+              {t('footer.role')}
             </p>
           </motion.div>
 
@@ -39,11 +42,11 @@ const Footer = () => {
             className="flex flex-wrap justify-center gap-8"
           >
             {[
-              { name: 'Accueil', href: '#home' },
-              { name: 'À propos', href: '#about' },
-              { name: 'Compétences', href: '#skills' },
-              { name: 'Projets', href: '#projects' },
-              { name: 'Contact', href: '#contact' },
+              { name: t('nav.home'), href: '#home' },
+              { name: t('nav.about'), href: '#about' },
+              { name: t('nav.skills'), href: '#skills' },
+              { name: t('nav.projects'), href: '#projects' },
+              { name: t('nav.contact'), href: '#contact' },
             ].map((link) => (
               <button
                 key={link.name}
@@ -78,9 +81,7 @@ const Footer = () => {
             className="text-center text-muted-foreground"
           >
             <p className="flex items-center justify-center gap-2 text-sm">
-              © {currentYear} Gorgui Marena. Développé avec 
-              <Heart size={16} className="text-primary" />
-              et beaucoup de café ☕
+              © {currentYear} Gorgui Marena. {t('footer.rights')}
             </p>
           </motion.div>
 

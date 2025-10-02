@@ -9,43 +9,43 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useLanguage } from "@/hooks/use-language";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 
 const Projects = () => {
+  const { t } = useLanguage();
+
   const projects = [
     {
       id: 1,
-      title: "Application Back-end d’information citoyenne",
-      description:
-        "Cette application permet de fournir les informations d’un citoyen via son numéro de carte d’identité. Elle est architecturée pour assurer la sécurité et la disponibilité des données.",
-      image: project1, // ⚠️ Mets ici ton image importée ou un placeholder
-      technologies: ["PHP", "SQL", "API sécurisée"],
-      github: "https://github.com/gorguimarena", // repo global
-      demo: "https://appdaf-php.onrender.com",
+      title: t('projects.student.title'),
+      description: t('projects.student.description'),
+      image: project1,
+      technologies: [t('projects.student.tech')],
+      github: "https://github.com/gorguimarena",
+      demo: "#",
       category: "Web App",
     },
     {
       id: 2,
-      title: "Clone de WhatsApp (WatchApp)",
-      description:
-        "Un clone de l'application WhatsApp intégrant la messagerie en temps réel, avec authentification utilisateur et gestion des conversations.",
-      image: project2, // ⚠️ Mets ici ton image importée ou un placeholder
-      technologies: ["JavaScript (Vanilla)"],
-      github: "https://github.com/gorguimarena/whatsAppClone-",
-      demo: "https://whatsappclone-9bzg.onrender.com",
+      title: t('projects.todo.title'),
+      description: t('projects.todo.description'),
+      image: project2,
+      technologies: [t('projects.todo.tech')],
+      github: "https://github.com/gorguimarena",
+      demo: "#",
       category: "Web App",
     },
     {
       id: 3,
-      title: "Gestion de Dahira avec gestion d’événementiel",
-      description:
-        "Un système complet pour la gestion des dahiras, incluant l’organisation des événements, la gestion des participants, et la communication.",
-      image: project3, // ⚠️ Mets ici ton image importée ou un placeholder
-      technologies: ["PHP"],
-      github: "https://packagist.org/users/dev-no-kage/packages", // ton profil packagist
-      demo: "https://registrymanager.onrender.com",
+      title: t('projects.messaging.title'),
+      description: t('projects.messaging.description'),
+      image: project3,
+      technologies: [t('projects.messaging.tech')],
+      github: "https://github.com/gorguimarena",
+      demo: "#",
       category: "Web App",
     },
   ];
@@ -83,12 +83,11 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            Mes <span className="gradient-text">Projets</span>
+            {t('projects.title').split(' ')[0]} <span className="gradient-text">{t('projects.title').split(' ')[1]}</span>
           </h2>
           <div className="w-24 h-1 bg-hero-gradient mx-auto rounded-full mb-6" />
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Découvrez quelques-uns de mes projets récents qui démontrent mes
-            compétences et ma passion pour le développement
+            {t('projects.description')}
           </p>
         </motion.div>
 

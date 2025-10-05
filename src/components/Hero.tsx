@@ -69,13 +69,14 @@ const Hero = () => {
               transition={{ delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Button
-                size="lg"
-                className="btn-primary relative z-10 font-semibold"
+              <a
+                href="/gorgui-marena-cv-en.pdf"
+                download="Gorgui Marena CV.pdf"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 btn-primary relative z-10 font-semibold"
               >
                 <Download size={20} className="mr-2" />
                 {t('hero.download')}
-              </Button>
+              </a>
 
               <Button
                 variant="outline"

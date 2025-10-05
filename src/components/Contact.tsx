@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/hooks/use-language';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { t } = useLanguage();
@@ -30,15 +31,35 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      await emailjs.send(
+        'service_abveb7o', // Replace with your EmailJS service ID
+        'template_4ohhgm2', // Replace with your EmailJS template ID
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'gorguimarena@gmail.com',
+        },
+        'XVwbHsx9sCrSOfP1F' // Replace with your EmailJS public key
+      );
+
       toast({
         title: t('contact.messageSent'),
         description: t('contact.messageResponse'),
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 2000);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: 'Erreur',
+        description: 'Une erreur s\'est produite lors de l\'envoi du message. Veuillez réessayer.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [

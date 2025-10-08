@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Mail } from 'lucide-react';
+import { ArrowDown, Eye, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useLanguage } from '@/hooks/use-language';
 
 const Hero = () => {
   const { t } = useLanguage();
+  const [isCVOpen, setIsCVOpen] = useState(false);
 
   const scrollToAbout = () => {
     const aboutSection = document.querySelector('#about');
@@ -69,14 +71,28 @@ const Hero = () => {
               transition={{ delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <a
-                href="/gorgui-marena-cv-en.pdf"
-                download="Gorgui Marena CV.pdf"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 btn-primary relative z-10 font-semibold"
-              >
-                <Download size={20} className="mr-2" />
-                {t('hero.download')}
-              </a>
+              <Dialog open={isCVOpen} onOpenChange={setIsCVOpen}>
+                <DialogTrigger asChild>
+                  <Button
+                    size="lg"
+                    className="btn-primary relative z-10 font-semibold"
+                  >
+                    <Eye size={20} className="mr-2" />
+                    {t('hero.viewCV')}
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="w-full h-full max-w-none sm:max-w-4xl sm:h-[90vh] p-0">
+                  <DialogTitle className="sr-only">CV Gorgui Marena</DialogTitle>
+                  <DialogDescription className="sr-only">
+                    Visualisation du CV de Gorgui Marena en PDF
+                  </DialogDescription>
+                  <iframe
+                    src="/gorgui-marena-cv-en.pdf"
+                    className="w-full h-full rounded-lg"
+                    title="CV Gorgui Marena"
+                  />
+                </DialogContent>
+              </Dialog>
 
               <Button
                 variant="outline"

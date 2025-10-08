@@ -23,7 +23,7 @@ const translations = {
     'hero.greeting': 'Salut, je suis',
     'hero.role': 'Développeur Full-Stack',
     'hero.description': 'Passionné par la création d\'expériences web exceptionnelles avec des technologies modernes. Je transforme les idées en solutions digitales innovantes.',
-    'hero.download': 'Télécharger le CV',
+    'hero.viewCV': 'Voir CV',
     'hero.discover': 'En savoir plus',
     'hero.scroll': 'Découvrir',
 
@@ -115,7 +115,7 @@ const translations = {
     'hero.greeting': 'Hi, I\'m',
     'hero.role': 'Full-Stack Developer',
     'hero.description': 'Passionate about creating exceptional web experiences with modern technologies. I transform ideas into innovative digital solutions.',
-    'hero.download': 'Download CV',
+    'hero.viewCV': 'View CV',
     'hero.discover': 'Learn More',
     'hero.scroll': 'Discover',
 

@@ -3,11 +3,22 @@ import { motion } from 'framer-motion';
 import { ArrowDown, Eye, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Document, Page, pdfjs } from 'react-pdf';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import 'react-pdf/dist/esm/Page/TextLayer.css';
 import { useLanguage } from '@/hooks/use-language';
+
+// Set up PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.js';
 
 const Hero = () => {
   const { t } = useLanguage();
   const [isCVOpen, setIsCVOpen] = useState(false);
+  const [numPages, setNumPages] = useState<number | null>(null);
+
+  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
+    setNumPages(numPages);
+  };
 
   const scrollToAbout = () => {
     const aboutSection = document.querySelector('#about');
@@ -81,16 +92,27 @@ const Hero = () => {
                     {t('hero.viewCV')}
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="w-full h-full max-w-none sm:max-w-4xl sm:h-[90vh] p-0">
+                <DialogContent className="w-full h-full max-w-none sm:max-w-4xl sm:h-[90vh] p-4">
                   <DialogTitle className="sr-only">CV Gorgui Marena</DialogTitle>
                   <DialogDescription className="sr-only">
                     Visualisation du CV de Gorgui Marena en PDF
                   </DialogDescription>
-                  <iframe
-                    src="/gorgui-marena-cv-en.pdf"
-                    className="w-full h-full rounded-lg"
-                    title="CV Gorgui Marena"
-                  />
+                  <div className="w-full h-full bg-white rounded-lg p-2 sm:p-4 overflow-y-auto">
+                    <Document
+                      file="/gorgui-marena-cv-en.pdf"
+                      onLoadSuccess={onDocumentLoadSuccess}
+                      className="flex flex-col items-center space-y-2 sm:space-y-4"
+                    >
+                      {Array.from(new Array(numPages), (el, index) => (
+                        <Page
+                          key={`page_${index + 1}`}
+                          pageNumber={index + 1}
+                          scale={0.75}
+                          className="shadow-lg max-w-full"
+                        />
+                      ))}
+                    </Document>
+                  </div>
                 </DialogContent>
               </Dialog>
 

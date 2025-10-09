@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Eye, Mail } from 'lucide-react';
+import { ArrowDown, Download, Eye, Mail, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogHeader, DialogFooter, DialogClose } from '@/components/ui/dialog';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
@@ -93,10 +93,24 @@ const Hero = () => {
                   </Button>
                 </DialogTrigger>
                 <DialogContent className="w-full h-full max-w-none sm:max-w-4xl sm:h-[90vh] p-4">
-                  <DialogTitle className="sr-only">CV Gorgui Marena</DialogTitle>
+                  <DialogTitle className="sr-only">{t('hero.cvTitle')}</DialogTitle>
                   <DialogDescription className="sr-only">
-                    Visualisation du CV de Gorgui Marena en PDF
+                    {t('hero.cvDescription')}
                   </DialogDescription>
+                  <DialogHeader className="flex flex-row items-center justify-between p-4 border-b">
+                    <h2 className="text-lg font-semibold">{t('hero.cvTitle')}</h2>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="/gorgui-marena-cv-en.pdf"
+                        download="Gorgui Marena CV.pdf"
+                        className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4"
+                      >
+                        <Download size={16} className="mr-2" />
+                        {t('hero.downloadCV')}
+                      </a>
+
+                    </div>
+                  </DialogHeader>
                   <div className="w-full h-full bg-white rounded-lg p-2 sm:p-4 overflow-y-auto">
                     <Document
                       file="/gorgui-marena-cv-en.pdf"

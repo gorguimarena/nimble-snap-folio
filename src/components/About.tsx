@@ -105,9 +105,9 @@ const About = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h3 className="text-3xl lg:text-4xl font-bold mb-4">Mes Services</h3>
+          <h3 className="text-3xl lg:text-4xl font-bold mb-4">{t('about.services.title')}</h3>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Je propose une gamme complète de services pour transformer vos idées en réalité digitale
+            {t('about.services.description')}
           </p>
         </motion.div>
 

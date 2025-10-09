@@ -33,8 +33,8 @@ const Contact = () => {
 
     try {
       await emailjs.send(
-        'service_abveb7o', // Replace with your EmailJS service ID
-        'template_4ohhgm2', // Replace with your EmailJS template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_abveb7o',
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_4ohhgm2',
         {
           from_name: formData.name,
           from_email: formData.email,
@@ -42,7 +42,7 @@ const Contact = () => {
           message: formData.message,
           to_email: 'gorguimarena@gmail.com',
         },
-        'XVwbHsx9sCrSOfP1F' // Replace with your EmailJS public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'XVwbHsx9sCrSOfP1F'
       );
 
       toast({
@@ -91,7 +91,7 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/gorguimarena', label: t('contact.github') },
-    { icon: Linkedin, href: '#', label: t('contact.linkedin') },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/gorgui-mar%C3%A9na-2068b425b', label: t('contact.linkedin') },
   ];
 
   return (
@@ -154,7 +154,7 @@ const Contact = () => {
             {/* Social Links */}
             <div>
               <h4 className="text-lg font-bold mb-4 text-foreground">
-                Suivez-moi
+                {t('contact.social.title')}
               </h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => {
@@ -189,7 +189,7 @@ const Contact = () => {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                    Nom complet
+                    {t('contact.form.name')}
                   </label>
                   <Input
                     id="name"
@@ -199,12 +199,12 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     className="bg-card border-border focus:border-primary transition-colors duration-300"
-                    placeholder="Votre nom"
+                    placeholder={t('contact.form.namePlaceholder')}
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                    Email
+                    {t('contact.form.email')}
                   </label>
                   <Input
                     id="email"
@@ -214,14 +214,14 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     className="bg-card border-border focus:border-primary transition-colors duration-300"
-                    placeholder="votre@email.com"
+                    placeholder={t('contact.form.emailPlaceholder')}
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                  Sujet
+                  {t('contact.form.subject')}
                 </label>
                 <Input
                   id="subject"
@@ -231,13 +231,13 @@ const Contact = () => {
                   value={formData.subject}
                   onChange={handleInputChange}
                   className="bg-card border-border focus:border-primary transition-colors duration-300"
-                  placeholder="Objet de votre message"
+                  placeholder={t('contact.form.subjectPlaceholder')}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Message
+                  {t('contact.form.message')}
                 </label>
                 <Textarea
                   id="message"
@@ -247,7 +247,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleInputChange}
                   className="bg-card border-border focus:border-primary transition-colors duration-300 resize-none"
-                  placeholder="Décrivez votre projet ou votre demande..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                 />
               </div>
 
@@ -266,7 +266,7 @@ const Contact = () => {
                 ) : (
                   <Send size={20} className="mr-2" />
                 )}
-                {isLoading ? 'Envoi en cours...' : 'Envoyer le message'}
+                {isLoading ? t('contact.form.sending') : t('contact.form.send')}
               </Button>
             </form>
           </motion.div>

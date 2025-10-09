@@ -13,6 +13,8 @@ import { useLanguage } from "@/hooks/use-language";
 import project1 from "@/assets/project-1.jpg";
 import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
+import chat from "@/assets/chat.png";
+
 
 const Projects = () => {
   const { t } = useLanguage();
@@ -20,6 +22,16 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
+      title: t('projects.ai.title'),
+      description: t('projects.ai.description'),
+      image: chat,
+      technologies: [t('projects.ai.tech')],
+      github: "https://github.com/gorguimarena",
+      demo: "#",
+      category: "Web App",
+    },
+    {
+      id: 2,
       title: t('projects.student.title'),
       description: t('projects.student.description'),
       image: project1,
@@ -29,7 +41,7 @@ const Projects = () => {
       category: "Web App",
     },
     {
-      id: 2,
+      id: 3,
       title: t('projects.todo.title'),
       description: t('projects.todo.description'),
       image: project2,
@@ -39,7 +51,7 @@ const Projects = () => {
       category: "Web App",
     },
     {
-      id: 3,
+      id: 4,
       title: t('projects.messaging.title'),
       description: t('projects.messaging.description'),
       image: project3,

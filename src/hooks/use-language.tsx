@@ -24,12 +24,17 @@ const translations = {
     'hero.role': 'Développeur Full-Stack',
     'hero.description': 'Passionné par la création d\'expériences web exceptionnelles avec des technologies modernes. Je transforme les idées en solutions digitales innovantes.',
     'hero.viewCV': 'Voir CV',
+    'hero.downloadCV': 'Télécharger CV',
+    'hero.cvTitle': 'CV',
+    'hero.cvDescription': 'Visualisation du CV de Gorgui Marena en PDF',
     'hero.discover': 'En savoir plus',
     'hero.scroll': 'Découvrir',
 
     // About
     'about.title': 'À propos de moi',
     'about.description': 'Titulaire d\'une attestation de l\'ISEP de Diamniadio, je me forme actuellement à la Sonatel Academy où je développe des applications web et mobiles dans le cadre de projets pratiques. J\'ai également obtenu plusieurs certifications sur Coursera, renforçant mes compétences en développement et en technologies numériques. Durant mon parcours, j\'ai collaboré à des projets à l\'ISEP et je continue à construire des solutions concrètes en équipe et en autonomie à la Sonatel Academy.',
+    'about.services.title': 'Formation',
+    'about.services.description': 'Découvrez mon parcours de formation et mes expériences professionnelles dans le développement',
 
     // Skills
     'skills.title': 'Compétences',
@@ -45,6 +50,9 @@ const translations = {
     'projects.student.title': 'Application de gestion des étudiants',
     'projects.student.description': 'Gestion des profils étudiants (filtrage, ajout, modification, suppression).',
     'projects.student.tech': 'PHP pur',
+    'projects.ai.title': 'Application de Chat IA',
+    'projects.ai.description': 'Une application web moderne de chat avec IA construite avec React, TypeScript et Tailwind CSS. Interface de chat intuitive, intégration avec OpenRouter API, mode sombre/clair, design responsive, export PDF des conversations.',
+    'projects.ai.tech': 'React 18, Tailwind CSS, OpenRouter AI',
     'projects.todo.title': 'Application de gestion de tâches',
     'projects.todo.description': 'Ajout, suppression et sélection de tâches. Utilisation de localStorage et identifiants uniques. Interface dynamique avec createElement.',
     'projects.todo.tech': 'JavaScript Vanilla',
@@ -67,6 +75,17 @@ const translations = {
     'contact.github': 'GitHub',
     'contact.messageSent': 'Message envoyé !',
     'contact.messageResponse': 'Je vous répondrai dans les plus brefs délais.',
+    'contact.form.name': 'Nom complet',
+    'contact.form.email': 'Email',
+    'contact.form.subject': 'Sujet',
+    'contact.form.message': 'Message',
+    'contact.form.namePlaceholder': 'Votre nom',
+    'contact.form.emailPlaceholder': 'votre@email.com',
+    'contact.form.subjectPlaceholder': 'Objet de votre message',
+    'contact.form.messagePlaceholder': 'Décrivez votre projet ou votre demande...',
+    'contact.form.send': 'Envoyer le message',
+    'contact.form.sending': 'Envoi en cours...',
+    'contact.social.title': 'Suivez-moi',
 
     // About
     'about.stats.projects': 'Projets Réalisés',
@@ -116,12 +135,17 @@ const translations = {
     'hero.role': 'Full-Stack Developer',
     'hero.description': 'Passionate about creating exceptional web experiences with modern technologies. I transform ideas into innovative digital solutions.',
     'hero.viewCV': 'View CV',
+    'hero.downloadCV': 'Download',
+    'hero.cvTitle': 'Cv',
+    'hero.cvDescription': 'View Gorgui Marena\'s CV in PDF format',
     'hero.discover': 'Learn More',
     'hero.scroll': 'Discover',
 
     // About
     'about.title': 'About Me',
     'about.description': 'Holder of an ISEP Diamniadio certificate, I am currently training at Sonatel Academy where I develop web and mobile applications as part of practical projects. I have also obtained several certifications on Coursera, strengthening my skills in development and digital technologies. During my journey, I collaborated on projects at ISEP and continue to build concrete solutions in teams and independently at Sonatel Academy.',
+    'about.services.title': 'Training',
+    'about.services.description': 'Discover my training background and professional experiences in development',
 
     // Skills
     'skills.title': 'Skills',
@@ -137,6 +161,9 @@ const translations = {
     'projects.student.title': 'Student Management Application',
     'projects.student.description': 'Student profile management (filtering, adding, editing, deleting).',
     'projects.student.tech': 'Pure PHP',
+    'projects.ai.title': 'AI Chat Application',
+    'projects.ai.description': 'A modern web chat application with AI built with React, TypeScript and Tailwind CSS. Intuitive chat interface, OpenRouter API integration, dark/light mode, responsive design, PDF export of conversations.',
+    'projects.ai.tech': 'React 18, Tailwind CSS, OpenRouter AI',
     'projects.todo.title': 'Task Management Application',
     'projects.todo.description': 'Adding, deleting and selecting tasks. Using localStorage and unique identifiers. Dynamic interface with createElement.',
     'projects.todo.tech': 'Vanilla JavaScript',
@@ -159,6 +186,17 @@ const translations = {
     'contact.github': 'GitHub',
     'contact.messageSent': 'Message sent!',
     'contact.messageResponse': 'I will respond as soon as possible.',
+    'contact.form.name': 'Full Name',
+    'contact.form.email': 'Email',
+    'contact.form.subject': 'Subject',
+    'contact.form.message': 'Message',
+    'contact.form.namePlaceholder': 'Your name',
+    'contact.form.emailPlaceholder': 'your@email.com',
+    'contact.form.subjectPlaceholder': 'Subject of your message',
+    'contact.form.messagePlaceholder': 'Describe your project or request...',
+    'contact.form.send': 'Send Message',
+    'contact.form.sending': 'Sending...',
+    'contact.social.title': 'Follow me',
 
     // About
     'about.stats.projects': 'Projects Completed',

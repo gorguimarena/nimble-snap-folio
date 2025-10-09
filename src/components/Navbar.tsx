@@ -88,7 +88,7 @@ const Navbar = () => {
             transition={{ delay: 0.1 }}
             className="text-2xl font-bold gradient-text"
           >
-            PORTFOLIO
+            Dev-No-Kage
           </motion.div>
 
           {/* Desktop Menu */}

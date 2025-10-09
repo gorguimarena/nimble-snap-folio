@@ -111,18 +111,18 @@ const Hero = () => {
 
                     </div>
                   </DialogHeader>
-                  <div className="w-full h-full bg-white rounded-lg p-2 sm:p-4 overflow-y-auto">
+                  <div className="w-full h-full bg-white rounded-lg p-2 sm:p-4 overflow-auto">
                     <Document
                       file="/gorgui-marena-cv-en.pdf"
                       onLoadSuccess={onDocumentLoadSuccess}
-                      className="flex flex-col items-center space-y-2 sm:space-y-4"
+                      className="flex flex-col items-center space-y-2 sm:space-y-4 min-w-fit"
                     >
                       {Array.from(new Array(numPages), (el, index) => (
                         <Page
                           key={`page_${index + 1}`}
                           pageNumber={index + 1}
-                          scale={0.75}
-                          className="shadow-lg max-w-full"
+                          scale={window.innerWidth >= 640 ? 1.4 : 0.57}
+                          className="shadow-lg"
                         />
                       ))}
                     </Document>

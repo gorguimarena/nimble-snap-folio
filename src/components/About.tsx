@@ -7,9 +7,9 @@ const About = () => {
   const { t } = useLanguage();
 
   const stats = [
-    { label: t('about.stats.projects'), value: '3+' },
-    { label: t('about.stats.certifications'), value: '5+' },
-    { label: t('about.stats.experience'), value: '2+' },
+    { label: t('about.stats.projects'), value: '7+' },
+    { label: t('about.stats.certifications'), value: '10+' },
+    { label: t('about.stats.experience'), value: '3+' },
     { label: t('about.stats.skills'), value: '8+' },
   ];
 

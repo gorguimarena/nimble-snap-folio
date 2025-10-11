@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, User, Briefcase, Mail, Sun, Moon } from "lucide-react";
+import { Menu, X, Home, User, Briefcase, Mail, Sun, Moon, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -50,6 +50,7 @@ const Navbar = () => {
     { name: t('nav.home'), href: "#home", icon: Home },
     { name: t('nav.about'), href: "#about", icon: User },
     { name: t('nav.skills'), href: "#skills", icon: User },
+    { name: t('nav.certifications'), href: "#certifications", icon: Award },
     { name: t('nav.projects'), href: "#projects", icon: Briefcase },
     { name: t('nav.contact'), href: "#contact", icon: Mail },
   ];
